@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 Days Video Check | TED Talk Studio</title>
+<style>
+:root{--green:#1F9D55;--green2:#DDF4E6;--melon:#FF5A7A;--melon2:#FFE3E9;--ink:#13261B;--muted:#56695D;--bg:#F5FBF7;--line:#D8EADF;--sun:#FFD54A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;font-size:17px}
+button{font:inherit;cursor:pointer;border:none}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+.top{background:var(--ink);color:#fff;border-radius:20px;padding:18px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:relative;overflow:hidden}
+.top::after{content:"30";position:absolute;right:-6px;top:-30px;font-size:150px;font-weight:900;color:rgba(255,90,122,.25);pointer-events:none}
+.top .red{background:#E62B1E;font-weight:900;font-size:12px;padding:3px 8px;border-radius:6px;letter-spacing:1px}
+.top h1{font-size:clamp(22px,4vw,30px);font-weight:900;line-height:1.1}
+.top p{opacity:.8;font-size:14px;font-weight:600}
+.pts{margin-left:auto;background:var(--sun);color:var(--ink);font-weight:900;border-radius:99px;padding:6px 14px;position:relative;z-index:1}
+.card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:18px;margin-top:14px}
+.card h2{font-size:20px;font-weight:900;margin-bottom:6px}
+.hint{color:var(--muted);font-size:15px;margin-bottom:10px}
+iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:#000}
+.btn{background:var(--green);color:#fff;font-weight:800;border-radius:14px;padding:11px 18px;font-size:16px;box-shadow:0 4px 0 #13703B}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #13703B}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn.melon{background:var(--melon);box-shadow:0 4px 0 #C93653}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{width:100%;border:2px solid var(--line);border-radius:12px;padding:11px 14px;font:inherit}
+input[type=text]:focus{outline:none;border-color:var(--green)}
+.steps{display:flex;gap:6px;margin-bottom:12px}
+.steps span{flex:1;height:8px;border-radius:99px;background:var(--line)}
+.steps span.ok{background:var(--green)}.steps span.no{background:var(--melon)}.steps span.cur{background:var(--sun)}
+.tag{display:inline-block;font-size:12px;font-weight:900;letter-spacing:1.2px;padding:3px 10px;border-radius:99px;margin-bottom:6px}
+.qq{font-size:20px;font-weight:800;margin-bottom:10px}
+.opts{display:grid;gap:8px}
+.opt{background:#fff;border:2px solid var(--line);border-radius:14px;padding:11px 14px;text-align:left;font-weight:600;font-size:16px;color:var(--ink)}
+.opt:hover{border-color:var(--green)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.sel{border-color:var(--sun);background:#FFF7D6}
+.opt.right{background:var(--green2);border-color:var(--green)}
+.opt.wrong{background:var(--melon2);border-color:var(--melon)}
+.fb{margin-top:10px;padding:12px 14px;border-radius:14px;font-weight:600;display:none}
+.fb.show{display:block}
+.fb.good{background:var(--green2);color:#0E5A30}.fb.bad{background:var(--melon2);color:#8A1830}
+.fb.tip{background:#FFF7D6;color:#6A5200}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#fff;border:2px solid var(--line);border-radius:99px;padding:8px 14px;font-weight:700}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.res{text-align:center}
+.res .big{font-size:64px}
+.res .score{font-size:34px;font-weight:900}
+.sum{display:grid;gap:6px;margin-top:12px;text-align:left}
+.sum div{display:flex;gap:10px;background:#F7FBF8;border-radius:12px;padding:8px 12px;font-size:15px;font-weight:600}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.gc{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center;cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:center}
+.gc b{font-size:15px}.gc .ar{display:none;color:var(--green);font-weight:800;font-size:19px;direction:rtl}.gc small{display:none;color:var(--muted)}
+.gc.on .ar,.gc.on small{display:block}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px 0 30px;font-weight:600}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(160%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:99px;font-weight:800;z-index:60;transition:transform .3s;max-width:92vw;text-align:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="red">TED</span>
+    <div><h1>Try something new for 30 days</h1><p>Matt Cutts · about 3½ minutes · Video check</p></div>
+    <div class="pts" id="pts">⭐ 0</div>
+  </div>
+
+  <div class="card" id="startCard">
+    <h2>👋 Before you watch</h2>
+    <p class="hint">Watch the whole talk. Look at <b>how he starts</b>, his <b>body language</b>, his <b>slides</b> and <b>how he ends</b>. Then answer 10 questions.</p>
+    <input type="text" id="sname" placeholder="Type your name" maxlength="40">
+  </div>
+
+  <div class="card">
+    <h2>🎬 Watch</h2>
+    <iframe src="https://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days" allowfullscreen title="Matt Cutts: Try something new for 30 days"></iframe>
+    <div class="row" style="margin-top:10px"><a class="btn ghost" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days">Video not playing? Open on TED ↗</a><button class="btn" id="goBtn" onclick="startQuiz()">I watched it: start the questions ➜</button></div>
+  </div>
+
+  <div class="card" id="quizCard" style="display:none">
+    <div class="steps" id="steps"></div>
+    <div id="qbox"></div>
+  </div>
+
+  <div class="card" id="glossCard">
+    <h2>📖 Useful words · tap for Arabic</h2>
+    <div class="gl" id="gloss"></div>
+  </div>
+  <footer>TED Talk Series · App 1 video task · LSC 1503 Professional Spoken Communication · HCT<br>Designed by: Nazila Motahari</footer>
+</div>
+<div class="toast" id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+const $=id=>document.getElementById(id);
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+const SEC={open:["THE OPENING","#FF5A7A"],body:["BODY LANGUAGE & VOICE","#1F9D55"],slides:["SLIDES & STRUCTURE","#2F80ED"],end:["THE ENDING","#13261B"]};
+const Q=[
+ {s:"open",q:"How does Matt start his talk?",o:["He says “Hello, my name is Matt” and his job","He starts straight away with a personal problem","He shows a long list of facts about habits","He asks the audience to stand up and move"],a:1,
+  why:"No “Hello, my name is…”. He starts immediately: a few years ago he felt <b>stuck in a rut</b>. Personal + fast = we listen.",tip:"Your hook (App 2) can start the same way: straight into your story."},
+ {s:"open",q:"He says he will copy a “great American philosopher”. Why does the audience laugh?",o:["Because he forgets the philosopher's name","Because the philosopher is his own father","Because the person is really a documentary filmmaker","Because he says the name in a funny accent"],a:2,
+  why:"Morgan Spurlock makes documentaries; he is not a philosopher! A small funny surprise relaxes everyone.",tip:"A little humour at the start helps you AND the audience relax."},
+ {s:"body",q:"What does he do with his hands?",o:["Keeps them in his pockets the whole time","Holds his notes and reads from them","Crosses his arms in front of his body","Uses open, relaxed gestures with his words"],a:3,
+  why:"His gestures are open and natural, and they match what he says. No notes in his hands.",tip:"Rubric: communication skills include gestures and posture."},
+ {s:"body",q:"Where does he look most of the time?",o:["At the audience","At the screen behind him","At notes on the floor","At the ceiling"],a:0,
+  why:"He looks at the audience and only glances at his slides. He doesn't read.",tip:"Remember: reading for more than half the time = maximum 60% for communication skills."},
+ {s:"body",q:"How do his face and voice sound?",o:["Serious and a little angry","Nervous, fast and quiet","Friendly, relaxed and clear","Bored, flat and very slow"],a:2,
+  why:"He smiles, speaks clearly and doesn't rush. He sounds like he is chatting with friends.",tip:"Friendly + clear is the TED style: conversational, not formal."},
+ {s:"body",q:"Does he walk around a lot?",o:["Yes, he runs from side to side","No, he mostly stays in one calm area","He sits on a chair for the whole talk","He walks into the audience and back"],a:1,
+  why:"He mostly stays in one place. That looks calm and confident and keeps our eyes on him and his message.",tip:"Moving all the time can look nervous. Plant your feet."},
+ {s:"slides",q:"What is on most of his slides?",o:["Long paragraphs of text","Charts with many numbers","Big personal photos, few words","Videos from other speakers"],a:2,
+  why:"Big photos from HIS OWN challenges, with very few words. Pictures, not paragraphs!",tip:"Your own photos are personal AND copyright-free."},
+ {s:"slides",q:"Tap ALL the 30-day challenges Matt talks about.",multi:true,o:["Taking a photo every day","Cycling to work","Writing a novel","Climbing Mount Kilimanjaro","Giving up sugar","Learning to fly a plane","Running a marathon in Dubai","Learning to speak Chinese"],a:[0,1,2,3,4],
+  why:"His challenges include a photo a day, cycling to work, writing a novel, climbing Kilimanjaro and no sugar. Each one has a photo on a slide!",tip:"Many small personal examples make one big idea clear."},
+ {s:"slides",q:"What did he learn about small changes and big, crazy challenges?",o:["Big challenges are the only ones that work","Small changes are boring and not worth trying","Small changes are more likely to stick","Changes never last longer than 30 days"],a:2,
+  why:"Small, sustainable changes are more likely to stick. Big challenges are fun, but they don't last as long.",tip:"This is his ONE big idea. What is yours?"},
+ {s:"end",q:"How does he end his talk?",o:["“That's it. Thank you very much.”","With a question and a call to action","By showing all his slides again","By saying sorry the talk was short"],a:1,
+  why:"He asks a question and challenges us: the next 30 days will pass anyway, so why not try something new?",tip:"A call to action is one of the 3 strong endings (App 3)."}];
+const REFL=["It's personal","It's short and clear","It uses his own photos","It ends with a challenge"];
+let order=[],qi=0,pts=0,answers=[],multiSel=[],refl=[];
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2200)}
+function addPts(n){pts+=n;$("pts").textContent="⭐ "+pts}
+function startQuiz(){if(!$("sname").value.trim()){toast("Please type your name first.");$("sname").focus();return}
+  order=shuffle(Q.map((_,i)=>i)).sort((a,b)=>["open","body","slides","end"].indexOf(Q[a].s)-["open","body","slides","end"].indexOf(Q[b].s));
+  order=order.map(i=>({i,ord:shuffle(Q[i].o.map((_,k)=>k))}));qi=0;answers=[];refl=[];pts=0;addPts(0);
+  $("quizCard").style.display="block";$("goBtn").textContent="🔁 Start again";draw();$("quizCard").scrollIntoView({behavior:"smooth"})}
+function steps(){$("steps").innerHTML=order.map((_,k)=>`<span class="${k<answers.length?(answers[k].ok?"ok":"no"):k===qi?"cur":""}"></span>`).join("")}
+function draw(){steps();if(qi>=order.length)return reflect();const it=order[qi],q=Q[it.i],sc=SEC[q.s];multiSel=[];
+  $("qbox").innerHTML=`<span class="tag" style="background:${sc[1]};color:#fff">${sc[0]}</span><div class="hint" style="margin:0">Question ${qi+1} of ${order.length}</div><div class="qq">${q.q}</div>
+  <div class="opts">${it.ord.map(k=>`<button class="opt" data-k="${k}" onclick="${q.multi?`tog(this,${k})`:`ans(${k})`}">${q.o[k]}</button>`).join("")}</div>
+  ${q.multi?`<div class="row" style="margin-top:10px"><button class="btn" onclick="ansMulti()">Check ✔</button></div>`:""}<div class="fb" id="fb"></div><div class="fb tip" id="tip"></div><div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn melon" id="nx" style="display:none" onclick="qi++;draw()">Next ➜</button></div>`}
+function lock(){document.querySelectorAll("#qbox .opt").forEach(b=>b.disabled=true)}
+function show(ok,q,extra){const fb=$("fb");fb.className="fb show "+(ok?"good":"bad");fb.innerHTML=(ok?"✅ ":"❌ ")+(extra||"")+q.why;$("tip").className="fb tip show";$("tip").innerHTML="💡 "+q.tip;$("nx").style.display="inline-block";$("nx").textContent=qi<order.length-1?"Next ➜":"Finish ➜";steps()}
+function ans(k){const it=order[qi],q=Q[it.i];lock();document.querySelectorAll("#qbox .opt").forEach(b=>{const kk=+b.dataset.k;if(kk===q.a)b.classList.add("right");else if(kk===k)b.classList.add("wrong")});
+  const ok=k===q.a;answers.push({q:q.q,ok,pick:q.o[k]});if(ok)addPts(10);show(ok,q)}
+function tog(b,k){const i=multiSel.indexOf(k);i>-1?multiSel.splice(i,1):multiSel.push(k);b.classList.toggle("sel")}
+function ansMulti(){if(!multiSel.length){toast("Tap at least one challenge.");return}const it=order[qi],q=Q[it.i];lock();
+  document.querySelectorAll("#qbox .opt").forEach(b=>{const k=+b.dataset.k;b.classList.remove("sel");if(q.a.includes(k))b.classList.add("right");else if(multiSel.includes(k))b.classList.add("wrong")});
+  const right=multiSel.filter(k=>q.a.includes(k)).length,wrong=multiSel.length-right,ok=right>=2&&wrong===0;
+  answers.push({q:q.q,ok,pick:multiSel.map(k=>q.o[k]).join(", ")});addPts(right*2+(wrong?0:2));show(ok,q,`You found ${right} of ${q.a.length}${wrong?` (and ${wrong} he didn't do)`:""}. `);
+  document.querySelector("#qbox .row .btn").style.display="none"}
+function reflect(){$("qbox").innerHTML=`<span class="tag" style="background:var(--sun)">YOUR TURN</span><div class="qq">Matt's talk is personal, short and full of his own photos. What will YOU copy for your TED Talk?</div><p class="hint">Tap 1 or 2.</p>
+  <div class="chips">${REFL.map((r,i)=>`<button class="chip" onclick="this.classList.toggle('on');const k=refl.indexOf(${i});k>-1?refl.splice(k,1):refl.push(${i})">${r}</button>`).join("")}</div>
+  <p class="hint" style="margin-top:14px">Which challenge surprised you the most? Why? <b>(one short sentence)</b></p><input type="text" id="surp" maxlength="140" placeholder="e.g. Kilimanjaro, because it is very dangerous!">
+  <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn" onclick="results()">See my results 🏆</button></div>`}
+function results(){if(!refl.length){toast("Tap at least one thing you will copy.");return}
+  const score=answers.filter(a=>a.ok).length,name=esc($("sname").value.trim()),surp=esc($("surp").value.trim());
+  window._res={app:"TED-App1-Video-MattCutts",name:$("sname").value.trim(),score,total:answers.length,answers,willCopy:refl.map(i=>REFL[i]),surprised:$("surp").value.trim(),date:new Date().toISOString()};
+  $("qbox").innerHTML=`<div class="res"><div class="big">${score>=8?"🏆":score>=6?"🌟":"💪"}</div><div style="font-weight:800">${name}</div><div class="score">${score} / ${answers.length}</div>
+   <p class="hint">${score>=8?"Excellent watching! You noticed the details.":score>=6?"Good job! Watch once more for the details you missed.":"Watch the talk again and try once more."}</p>
+   <div class="sum">${answers.map((a,i)=>`<div>${a.ok?"✅":"❌"} <span>${i+1}. ${esc(a.q)}</span></div>`).join("")}
+   <div>🪞 <span><b>I will copy:</b> ${refl.map(i=>REFL[i]).join(", ")}</span></div>${surp?`<div>😲 <span><b>Most surprising:</b> ${surp}</span></div>`:""}</div>
+   <p class="hint" style="margin-top:12px">📸 Take a screenshot of this screen, or save your result.</p>
+   <div class="row" style="justify-content:center"><button class="btn" onclick="saveRes()">💾 Save result (JSON)</button><button class="btn ghost" onclick="startQuiz()">🔁 Try again</button></div></div>`;
+  addPts(10);if(score>=8)confetti()}
+function saveRes(){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(window._res,null,2)],{type:"application/json"}));a.download=`MattCutts_VideoCheck_${(window._res.name||"student").replace(/\W+/g,"_")}.json`;a.click()}
+const GL=[["stuck in a rut","عالق في الروتين","doing the same boring thing every day"],["challenge","تحدٍّ","something new and difficult to try"],["sustainable","مستدام","you can keep doing it for a long time"],["habit","عادة","something you do again and again"],["gesture","إيماءة","moving your hands to show meaning"],["eye contact","التواصل البصري","looking at the people you talk to"]];
+$("gloss").innerHTML=GL.map(g=>`<div class="gc" onclick="this.classList.toggle('on')"><b>${g[0]}</b><div class="ar">${g[1]}</div><small>${g[2]}</small></div>`).join("");
+function confetti(){const c=$("confetti"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const cols=["#1F9D55","#FF5A7A","#FFD54A","#2F80ED"],P=Array.from({length:120},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,r:4+Math.random()*6,c:cols[Math.random()*4|0],vy:2+Math.random()*3,vx:-1.5+Math.random()*3,a:Math.random()*6}));
+  let t=0;(function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.a+=.1;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);x.restore()});if(++t<160)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)})()}
+</script>
+</body>
+</html>
